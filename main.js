@@ -1,12 +1,9 @@
 'use strict'
 
-const text = require('fs').readFileSync('string.txt', 'utf8'),
-    words = text.replace('/\n/g', '').split(' ').sort();
-
-var trie = {},
-    end = {},
-    keepEnd = {},
-    endings = [ 0 ];
+const fs = require('fs'),
+    text = fs.readFileSync('string.txt', 'utf8'),
+    words = text.replace('/\n/g', '').split(' ').sort(),
+    trie = {};
 
 
 for(let i = 0 ; i < words.length; i++) {
@@ -15,7 +12,6 @@ for(let i = 0 ; i < words.length; i++) {
         letters = word.split(''),
         cur_trie = trie;
 
-        console.log(cur_trie)
     //iterate through all letters of a word
     for(let j = 0; j < letters.length; j++) {
         let letter = letters[j],
@@ -36,6 +32,5 @@ for(let i = 0 ; i < words.length; i++) {
         }
     }
 }
-
-var ret = JSON.stringify( trie ).replace(/"/g, "");
-console.log(ret)
+var final_trie = JSON.stringify( trie ).replace(/"/g, "");
+fs.writeFileSync('./trie.txt', final_trie, 'utf8');
