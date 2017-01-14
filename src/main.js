@@ -7,4 +7,4 @@ const Trie = require('./trie'),
 
 var my_trie = new Trie( words );
 var final_trie = JSON.stringify( my_trie.build() ).replace(/"/g, "");
-fs.writeFileSync('./trie.txt', final_trie, 'utf8');
+fs.writeFileSync('../trie.txt', final_trie, 'utf8');
